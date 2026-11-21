@@ -73,7 +73,11 @@ fun OnboardingScreen(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(palette.backgroundStart.copy(alpha = if (palette.highContrast) 0.96f else 0.88f)),
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(palette.backgroundStart, palette.backgroundEnd),
+                ),
+            ),
         contentAlignment = Alignment.Center,
     ) {
         Column(

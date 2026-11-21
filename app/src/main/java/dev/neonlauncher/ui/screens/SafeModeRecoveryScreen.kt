@@ -71,7 +71,7 @@ fun SafeModeRecoveryScreen(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.Black.copy(alpha = 0.84f))
+            .background(palette.backgroundStart)
             .padding(horizontal = 48.dp, vertical = 27.dp),
         contentAlignment = Alignment.Center,
     ) {

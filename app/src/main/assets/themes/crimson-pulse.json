@@ -1,0 +1,20 @@
+{
+  "id": "crimson-pulse",
+  "name": "Crimson Overdrive",
+  "nameEs": "Pulso Carmesí",
+  "author": "Neon Launcher",
+  "backgroundStyle": "CYBER_PULSE",
+  "colors": {
+    "backgroundStart": "#FF040103",
+    "backgroundEnd": "#FF160207",
+    "surface": "#E6120508",
+    "surfaceFocused": "#F226070F",
+    "surfaceBorder": "#73FF1744",
+    "accentPrimary": "#FFFF1744",
+    "accentSecondary": "#FFFF5252",
+    "accentTertiary": "#FFD50000",
+    "textPrimary": "#FFFFF5F7",
+    "textSecondary": "#FFE0B0B8",
+    "danger": "#FFFF6E40"
+  }
+}

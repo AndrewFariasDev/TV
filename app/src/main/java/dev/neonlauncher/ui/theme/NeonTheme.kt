@@ -106,13 +106,25 @@ fun resolveNeonPalette(
             performanceMode = performanceMode,
         )
     } else {
+        val opaqueCardSurface = if (baseSurface.alpha < 0.75f) {
+            lerp(bgEnd, Color(0xFF0A0E1EL), 0.45f).copy(alpha = 0.91f)
+        } else {
+            baseSurface
+        }
+        val opaqueFocusedSurface = if (baseFocused.alpha < 0.80f) {
+            lerp(bgEnd, primary, 0.18f).copy(alpha = 0.96f)
+        } else {
+            baseFocused
+        }
+        val opaqueModalSurface = lerp(bgStart, bgEnd, 0.35f).copy(alpha = 0.98f)
+
         NeonPalette(
             themeId = active.id,
             backgroundStart = bgStart,
             backgroundEnd = bgEnd,
-            surface = baseSurface,
-            surfaceFocused = baseFocused,
-            surfaceModal = lerp(bgEnd, Color(0xFF060916L), 0.55f).copy(alpha = 0.94f),
+            surface = opaqueCardSurface,
+            surfaceFocused = opaqueFocusedSurface,
+            surfaceModal = opaqueModalSurface,
             surfaceBorder = baseBorder,
             focusedBorder = primary,
             accentPrimary = primary,

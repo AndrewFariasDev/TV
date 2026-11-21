@@ -54,6 +54,7 @@ import dev.neonlauncher.ui.theme.LocalNeonPalette
 fun AppContextMenuDialog(
     app: AppInfo,
     isFavorite: Boolean,
+    onLaunchApp: (AppInfo) -> Unit,
     onToggleFavorite: (AppInfo) -> Unit,
     onHideApp: (AppInfo) -> Unit,
     onOpenAppInfo: (AppInfo) -> Unit,
@@ -169,6 +170,15 @@ fun AppContextMenuDialog(
                         onDismiss()
                     },
                     modifier = Modifier.focusRequester(firstOptionFocus),
+                )
+
+                ContextMenuOptionButton(
+                    iconRes = R.drawable.ic_neon_home,
+                    label = stringResource(R.string.context_menu_open_app),
+                    onClick = {
+                        onLaunchApp(app)
+                        onDismiss()
+                    },
                 )
 
                 ContextMenuOptionButton(

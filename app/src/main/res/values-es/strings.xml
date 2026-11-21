@@ -19,30 +19,38 @@
     <string name="status_settings_reset">Ajustes restablecidos por defecto</string>
 
     <!-- Home Screen -->
-    <string name="home_section_favorites">Favoritos</string>
-    <string name="home_section_apps">Aplicaciones</string>
+    <string name="home_section_favorites">Mis aplicaciones</string>
+    <string name="home_section_apps">Todas las instaladas</string>
     <string name="home_section_quick_actions">Controles rápidos</string>
-    <string name="home_sort_alphabetical">Orden: A–Z</string>
-    <string name="home_sort_recent">Orden: Recientes</string>
-    <string name="home_toggle_sort_cd">Cambiar orden de aplicaciones</string>
+    <string name="home_button_choose_apps">Elegir apps</string>
     <string name="home_button_setup">Configurar</string>
     <string name="home_button_default_home_active">Inicio activo</string>
     <string name="home_button_settings">Ajustes</string>
     <string name="home_badge_leanback">TV</string>
-    <string name="home_badge_favorite">Fijada</string>
-    <string name="home_empty_apps_title">No hay aplicaciones visibles</string>
-    <string name="home_empty_apps_subtitle">Todas las apps están ocultas. Abre Ajustes para mostrarlas.</string>
-    <string name="home_hint_bar">OK: Abrir   •   Mantener OK / Menú: Opciones   •   D-Pad: Navegar</string>
-    <string name="home_apps_count">%1$d apps</string>
-    <string name="home_favorites_count">%1$d fijadas</string>
+    <string name="home_badge_favorite">En inicio</string>
+    <string name="home_add_apps_card_title">Elegir apps del inicio</string>
+    <string name="home_add_apps_card_subtitle">Selecciona solo las apps que quieras ver aquí</string>
+    <string name="home_empty_apps_title">Elige las aplicaciones para tu menú de inicio</string>
+    <string name="home_empty_apps_subtitle">Pulsa OK aquí para marcar únicamente las aplicaciones que quieres mostrar en tu pantalla principal.</string>
+    <string name="home_hint_bar">OK: Abrir   •   Mantener OK / Menú: Opciones   •   + Elegir apps: Personalizar</string>
+    <string name="home_apps_count">%1$d instaladas</string>
+    <string name="home_favorites_count">%1$d elegidas</string>
+
+    <!-- App Picker Overlay -->
+    <string name="app_picker_title">Elegir aplicaciones de inicio</string>
+    <string name="app_picker_subtitle">Pulsa OK sobre una app para mostrarla o quitarla de tu menú principal. Mantén OK para más opciones.</string>
+    <string name="app_picker_done">Listo</string>
+    <string name="app_picker_badge_selected">EN INICIO</string>
+    <string name="app_picker_badge_add">+ AGREGAR</string>
 
     <!-- App Context Menu -->
     <string name="context_menu_title">Opciones de app</string>
+    <string name="context_menu_open_app">Abrir aplicación</string>
     <string name="context_menu_subtitle_leanback">Aplicación Android TV</string>
     <string name="context_menu_subtitle_standard">Aplicación estándar</string>
-    <string name="context_menu_pin_favorite">Fijar en Favoritos</string>
-    <string name="context_menu_unpin_favorite">Quitar de Favoritos</string>
-    <string name="context_menu_hide_app">Ocultar del inicio</string>
+    <string name="context_menu_pin_favorite">Mostrar en el menú de inicio</string>
+    <string name="context_menu_unpin_favorite">Quitar del menú de inicio</string>
+    <string name="context_menu_hide_app">Ocultar aplicación</string>
     <string name="context_menu_app_info">Información de la app</string>
     <string name="context_menu_uninstall">Desinstalar</string>
     <string name="context_menu_close">Cerrar</string>
@@ -53,8 +61,9 @@
     <string name="settings_close">Volver al inicio</string>
     <string name="settings_section_theme">Tema Neón</string>
     <string name="settings_section_background">Estilo de fondo</string>
-    <string name="bg_style_aurora">Aurora</string>
-    <string name="bg_style_grid">Rejilla Cyber</string>
+    <string name="bg_style_aurora">Aurora (Animado)</string>
+    <string name="bg_style_grid">Rejilla Cyber (Animado)</string>
+    <string name="bg_style_cyber_pulse">Pulso Cyber (Animado)</string>
     <string name="bg_style_solid">Sólido</string>
     <string name="settings_section_display">Reloj y accesibilidad</string>
     <string name="settings_clock_24h_title">Reloj de 24 horas</string>

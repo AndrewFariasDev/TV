@@ -166,6 +166,10 @@ private class NeonDreamCanvasView(context: Context) : View(context) {
         when (backgroundStyle) {
             BackgroundStyle.AURORA -> drawAurora(canvas, w, h)
             BackgroundStyle.GRID -> drawGrid(canvas, w, h)
+            BackgroundStyle.CYBER_PULSE -> {
+                drawAurora(canvas, w, h)
+                drawGrid(canvas, w, h)
+            }
             BackgroundStyle.SOLID -> Unit
         }
 

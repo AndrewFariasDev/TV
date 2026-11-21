@@ -56,6 +56,7 @@ fun NeonLauncherRoot(
         when {
             uiState.contextMenuApp != null -> actions.onDismissContextMenu()
             uiState.activeOverlay == ActiveOverlay.SETTINGS -> actions.onCloseOverlay()
+            uiState.activeOverlay == ActiveOverlay.APP_PICKER -> actions.onCloseOverlay()
             uiState.activeOverlay == ActiveOverlay.ONBOARDING -> actions.onCompleteOnboarding()
             else -> Unit // Never exit Home when pressing Back on the launcher root or Safe Mode.
         }
@@ -72,17 +73,26 @@ fun NeonLauncherRoot(
                 performanceMode = uiState.performanceMode,
             )
 
-            HomeScreen(
-                uiState = uiState,
-                iconLoader = iconLoader,
-                actions = actions,
-            )
-
             when (uiState.activeOverlay) {
-                ActiveOverlay.NONE -> Unit
+                ActiveOverlay.NONE -> {
+                    HomeScreen(
+                        uiState = uiState,
+                        iconLoader = iconLoader,
+                        actions = actions,
+                    )
+                }
+
                 ActiveOverlay.SETTINGS -> {
                     SettingsScreen(
                         uiState = uiState,
+                        actions = actions,
+                    )
+                }
+
+                ActiveOverlay.APP_PICKER -> {
+                    AppPickerScreen(
+                        uiState = uiState,
+                        iconLoader = iconLoader,
                         actions = actions,
                     )
                 }
@@ -103,10 +113,14 @@ fun NeonLauncherRoot(
             }
 
             val menuApp = uiState.contextMenuApp
-            if (menuApp != null && uiState.activeOverlay == ActiveOverlay.NONE) {
+            if (menuApp != null &&
+                (uiState.activeOverlay == ActiveOverlay.NONE ||
+                    uiState.activeOverlay == ActiveOverlay.APP_PICKER)
+            ) {
                 AppContextMenuDialog(
                     app = menuApp,
                     isFavorite = uiState.favoritePackages.contains(menuApp.packageName),
+                    onLaunchApp = actions::onLaunchApp,
                     onToggleFavorite = { app -> actions.onToggleFavorite(app.packageName) },
                     onHideApp = { app -> actions.onHideApp(app.packageName) },
                     onOpenAppInfo = { app -> actions.onOpenAppInfo(app.packageName) },

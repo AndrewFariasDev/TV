@@ -6,6 +6,7 @@ import androidx.annotation.StringRes
 enum class BackgroundStyle {
     AURORA,
     GRID,
+    CYBER_PULSE,
     SOLID,
 }
 

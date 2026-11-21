@@ -17,8 +17,8 @@ class ThemeAssetsValidationTest {
         }?.sortedBy { it.name }.orEmpty()
 
         assertTrue(
-            "Expected at least 4 bundled themes, found ${jsonFiles.size}",
-            jsonFiles.size >= 4,
+            "Expected at least 5 bundled themes, found ${jsonFiles.size}",
+            jsonFiles.size >= 5,
         )
 
         val seenIds = mutableSetOf<String>()
@@ -50,6 +50,10 @@ class ThemeAssetsValidationTest {
         assertTrue(
             "Default theme '${ThemeJsonParser.DEFAULT_THEME_ID}' must exist in assets/themes",
             ThemeJsonParser.DEFAULT_THEME_ID in seenIds,
+        )
+        assertTrue(
+            "Red & Black animated theme 'crimson-pulse' must exist in assets/themes",
+            "crimson-pulse" in seenIds,
         )
     }
 

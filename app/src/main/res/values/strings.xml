@@ -19,30 +19,38 @@
     <string name="status_settings_reset">Settings restored to defaults</string>
 
     <!-- Home Screen -->
-    <string name="home_section_favorites">Favorites</string>
-    <string name="home_section_apps">All Apps</string>
+    <string name="home_section_favorites">My Apps</string>
+    <string name="home_section_apps">All Installed Apps</string>
     <string name="home_section_quick_actions">Quick Controls</string>
-    <string name="home_sort_alphabetical">Sort: A–Z</string>
-    <string name="home_sort_recent">Sort: Recent</string>
-    <string name="home_toggle_sort_cd">Toggle app sort order</string>
+    <string name="home_button_choose_apps">Choose Apps</string>
     <string name="home_button_setup">Setup</string>
     <string name="home_button_default_home_active">Home Active</string>
     <string name="home_button_settings">Settings</string>
     <string name="home_badge_leanback">TV</string>
-    <string name="home_badge_favorite">Pinned</string>
-    <string name="home_empty_apps_title">No visible apps</string>
-    <string name="home_empty_apps_subtitle">All apps are currently hidden. Open Settings to unhide them.</string>
-    <string name="home_hint_bar">OK: Open   •   Hold OK / Menu: Options   •   D-Pad: Navigate</string>
-    <string name="home_apps_count">%1$d apps</string>
-    <string name="home_favorites_count">%1$d pinned</string>
+    <string name="home_badge_favorite">On Home</string>
+    <string name="home_add_apps_card_title">Choose Home Apps</string>
+    <string name="home_add_apps_card_subtitle">Select only the apps you want on your menu</string>
+    <string name="home_empty_apps_title">Choose the apps for your Home menu</string>
+    <string name="home_empty_apps_subtitle">Press OK here to pick only the apps you want displayed on this screen.</string>
+    <string name="home_hint_bar">OK: Launch   •   Hold OK / Menu: Options   •   + Choose Apps: Customize Menu</string>
+    <string name="home_apps_count">%1$d installed</string>
+    <string name="home_favorites_count">%1$d selected</string>
+
+    <!-- App Picker Overlay -->
+    <string name="app_picker_title">Choose Home Apps</string>
+    <string name="app_picker_subtitle">Press OK on any app to show or remove it on your Home menu. Hold OK for more options.</string>
+    <string name="app_picker_done">Done</string>
+    <string name="app_picker_badge_selected">ON HOME</string>
+    <string name="app_picker_badge_add">+ ADD</string>
 
     <!-- App Context Menu -->
     <string name="context_menu_title">App Options</string>
+    <string name="context_menu_open_app">Open App</string>
     <string name="context_menu_subtitle_leanback">Android TV App</string>
     <string name="context_menu_subtitle_standard">Standard App</string>
-    <string name="context_menu_pin_favorite">Pin to Favorites</string>
-    <string name="context_menu_unpin_favorite">Remove from Favorites</string>
-    <string name="context_menu_hide_app">Hide from Home</string>
+    <string name="context_menu_pin_favorite">Show on Home Menu</string>
+    <string name="context_menu_unpin_favorite">Remove from Home Menu</string>
+    <string name="context_menu_hide_app">Hide App</string>
     <string name="context_menu_app_info">App Info</string>
     <string name="context_menu_uninstall">Uninstall</string>
     <string name="context_menu_close">Close</string>
@@ -53,8 +61,9 @@
     <string name="settings_close">Back to Home</string>
     <string name="settings_section_theme">Neon Theme</string>
     <string name="settings_section_background">Background Style</string>
-    <string name="bg_style_aurora">Aurora</string>
-    <string name="bg_style_grid">Cyber Grid</string>
+    <string name="bg_style_aurora">Aurora (Animated)</string>
+    <string name="bg_style_grid">Cyber Grid (Animated)</string>
+    <string name="bg_style_cyber_pulse">Cyber Pulse (Animated)</string>
     <string name="bg_style_solid">Solid</string>
     <string name="settings_section_display">Clock &amp; Accessibility</string>
     <string name="settings_clock_24h_title">24-Hour Clock</string>

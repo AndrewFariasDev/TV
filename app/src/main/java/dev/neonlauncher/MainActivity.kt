@@ -59,6 +59,7 @@ class MainActivity : ComponentActivity() {
                     when {
                         state.contextMenuApp != null -> viewModel.onDismissContextMenu()
                         state.activeOverlay == ActiveOverlay.SETTINGS -> viewModel.onCloseOverlay()
+                        state.activeOverlay == ActiveOverlay.APP_PICKER -> viewModel.onCloseOverlay()
                         state.activeOverlay == ActiveOverlay.ONBOARDING -> viewModel.onCompleteOnboarding()
                         else -> Unit // Never exit the TV launcher when pressing Back on Home.
                     }

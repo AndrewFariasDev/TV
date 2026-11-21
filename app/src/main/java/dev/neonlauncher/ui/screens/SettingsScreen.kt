@@ -92,7 +92,11 @@ fun SettingsScreen(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(palette.backgroundStart.copy(alpha = if (palette.highContrast) 0.94f else 0.84f)),
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(palette.backgroundStart, palette.backgroundEnd),
+                ),
+            ),
     ) {
         Column(
             modifier = Modifier
@@ -733,5 +737,6 @@ private fun SettingsInfoRow(text: String) {
 private fun backgroundStyleLabel(style: BackgroundStyle): String = when (style) {
     BackgroundStyle.AURORA -> stringResource(R.string.bg_style_aurora)
     BackgroundStyle.GRID -> stringResource(R.string.bg_style_grid)
+    BackgroundStyle.CYBER_PULSE -> stringResource(R.string.bg_style_cyber_pulse)
     BackgroundStyle.SOLID -> stringResource(R.string.bg_style_solid)
 }

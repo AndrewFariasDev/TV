@@ -35,6 +35,7 @@ import kotlinx.coroutines.launch
 enum class ActiveOverlay {
     NONE,
     SETTINGS,
+    APP_PICKER,
     ONBOARDING,
     SAFE_MODE,
 }
@@ -78,6 +79,7 @@ interface LauncherActions {
     fun onToggleSortOrder()
     fun onQuickAction(action: QuickAction)
     fun onOpenSettings()
+    fun onOpenAppPicker()
     fun onCloseOverlay()
     fun onSelectTheme(themeId: String)
     fun onSelectBackgroundStyle(style: BackgroundStyle)
@@ -218,6 +220,7 @@ class LauncherViewModel(application: Application) : AndroidViewModel(application
     fun onHomeIntentReceived() {
         transientFlow.update { state ->
             val nextOverlay = if (state.manualOverlay == ActiveOverlay.SETTINGS ||
+                state.manualOverlay == ActiveOverlay.APP_PICKER ||
                 state.manualOverlay == ActiveOverlay.ONBOARDING
             ) {
                 null
@@ -319,6 +322,12 @@ class LauncherViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
+    override fun onOpenAppPicker() {
+        transientFlow.update {
+            it.copy(contextMenuApp = null, manualOverlay = ActiveOverlay.APP_PICKER)
+        }
+    }
+
     override fun onCloseOverlay() {
         val currentOverlay = uiState.value.activeOverlay
         if (currentOverlay == ActiveOverlay.SAFE_MODE) return
@@ -370,10 +379,25 @@ class LauncherViewModel(application: Application) : AndroidViewModel(application
     }
 
     override fun onRequestSetDefaultHome() {
+        // Always mark onboarding as completed and dismiss the prompt so it never loops back open.
+        transientFlow.update { state ->
+            val nextOverlay = if (state.manualOverlay == ActiveOverlay.ONBOARDING) null else state.manualOverlay
+            state.copy(manualOverlay = nextOverlay)
+        }
+        viewModelScope.launch {
+            preferencesRepository.setOnboardingCompleted(true)
+        }
+
+        val wasAlreadyDefault = HomeAliasManager.isDefaultHome(app)
         val intent = HomeAliasManager.createSetHomeIntent(app)
         refreshCapabilitiesAndActions()
+
+        if (wasAlreadyDefault || capabilitiesFlow.value.isDefaultHome) {
+            reportStatusMessage(R.string.status_home_reenabled)
+            return
+        }
         if (intent == null) {
-            reportStatusMessage(R.string.status_action_unavailable)
+            reportStatusMessage(R.string.status_home_reenabled)
             return
         }
         _effects.tryEmit(LauncherEffect.RequestDefaultHome(intent))
@@ -471,12 +495,12 @@ class LauncherViewModel(application: Application) : AndroidViewModel(application
         val visibleApps = AppSorting.visibleApps(
             apps = mergedApps,
             hiddenPackages = prefs.hiddenPackages,
-            sortOrder = prefs.sortOrder,
+            sortOrder = SortOrder.ALPHABETICAL,
         )
         val favoriteApps = AppSorting.favoriteApps(
             visibleApps = visibleApps,
             favoritePackages = prefs.favoritePackages,
-            sortOrder = prefs.sortOrder,
+            sortOrder = SortOrder.ALPHABETICAL,
         )
         val hiddenApps = AppSorting.hiddenApps(
             apps = mergedApps,
@@ -491,7 +515,8 @@ class LauncherViewModel(application: Application) : AndroidViewModel(application
         val activeOverlay = when {
             transient.safeModePending -> ActiveOverlay.SAFE_MODE
             transient.manualOverlay != null -> transient.manualOverlay
-            transient.prefsLoaded && !prefs.onboardingCompleted -> ActiveOverlay.ONBOARDING
+            transient.prefsLoaded && !prefs.onboardingCompleted && !catalog.capabilities.isDefaultHome ->
+                ActiveOverlay.ONBOARDING
             else -> ActiveOverlay.NONE
         }
 

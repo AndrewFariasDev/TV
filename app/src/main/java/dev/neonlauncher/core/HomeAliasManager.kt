@@ -68,18 +68,25 @@ object HomeAliasManager {
 
     /**
      * Builds the best resolved [Intent] for assigning Neon Launcher as default Home:
-     * `RoleManager.ROLE_HOME` on API 29+ when available, otherwise `ACTION_HOME_SETTINGS`,
-     * otherwise a resolved `CATEGORY_HOME` chooser.
+     * `RoleManager.ROLE_HOME` on API 29+ when available, otherwise `ACTION_HOME_SETTINGS`.
+     * Never uses `Intent.createChooser(CATEGORY_HOME)` because on Android TV that re-launches
+     * `MainActivity` itself without persisting a default Home preference.
      */
     fun createSetHomeIntent(context: Context): Intent? {
         if (!isHomeAliasEnabled(context)) {
             setHomeAliasEnabled(context, true)
         }
+        if (isDefaultHome(context)) {
+            return null
+        }
         val pm = context.packageManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val roleManager = context.getSystemService(RoleManager::class.java)
-            if (roleManager != null && roleManager.isRoleAvailable(RoleManager.ROLE_HOME)) {
+            if (roleManager != null &&
+                roleManager.isRoleAvailable(RoleManager.ROLE_HOME) &&
+                !roleManager.isRoleHeld(RoleManager.ROLE_HOME)
+            ) {
                 val roleIntent = roleManager.createRequestRoleIntent(RoleManager.ROLE_HOME)
                 if (pm.resolveActivityCompat(roleIntent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
                     return roleIntent
@@ -90,11 +97,6 @@ object HomeAliasManager {
         val homeSettingsIntent = Intent(Settings.ACTION_HOME_SETTINGS)
         if (pm.resolveActivityCompat(homeSettingsIntent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
             return homeSettingsIntent
-        }
-
-        val chooserIntent = Intent.createChooser(createHomeIntent(), null)
-        if (pm.resolveActivityCompat(chooserIntent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
-            return chooserIntent
         }
 
         return null

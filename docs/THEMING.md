@@ -15,6 +15,7 @@ All `.json` files in that directory are discovered automatically at runtime by `
 | ID | English Name | Spanish Name (`nameEs`) | Default Style | File |
 | -- | ------------ | ----------------------- | ------------- | ---- |
 | `cyber-cyan` *(default)* | Cyber Cyan | Cian Cyber | `AURORA` | `app/src/main/assets/themes/cyber-cyan.json` |
+| `crimson-pulse` | Crimson Overdrive | Pulso Carmesí | `CYBER_PULSE` | `app/src/main/assets/themes/crimson-pulse.json` |
 | `emerald-matrix` | Emerald Matrix | Matriz Esmeralda | `GRID` | `app/src/main/assets/themes/emerald-matrix.json` |
 | `synthwave-grid` | Synthwave Grid | Rejilla Synthwave | `GRID` | `app/src/main/assets/themes/synthwave-grid.json` |
 | `ultraviolet-void` | Ultraviolet Void | Vacío Ultravioleta | `AURORA` | `app/src/main/assets/themes/ultraviolet-void.json` |
@@ -56,7 +57,7 @@ Every theme file must be a valid UTF-8 JSON object matching `ThemeJsonParser`:
 | `name` | Yes | String | Display name shown in English UI. |
 | `nameEs` | Recommended | String | Display name shown when TV language is Spanish (falls back to `name` if omitted). |
 | `author` | Optional | String | Creator attribution shown/stored in metadata (defaults to `"Neon Launcher"` if omitted). |
-| `backgroundStyle` | Yes | Enum | One of `"AURORA"`, `"GRID"`, or `"SOLID"`. Users can still override background style in Settings. |
+| `backgroundStyle` | Yes | Enum | One of `"AURORA"`, `"GRID"`, `"CYBER_PULSE"`, or `"SOLID"`. Users can still override background style in Settings. |
 | `colors` | Yes | Object | Must contain all **11** required color keys below. |
 
 ### `colors` Fields (All 11 Required)

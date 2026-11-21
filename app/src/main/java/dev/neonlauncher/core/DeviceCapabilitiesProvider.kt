@@ -19,9 +19,10 @@ object DeviceCapabilitiesProvider {
         val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager
         val isLowRamDevice = activityManager?.isLowRamDevice == true
         val totalMem = readTotalMemoryBytes(activityManager)
-        val isLowPerformanceByDefault = isLowRamDevice ||
-            (totalMem in 1L..LOW_RAM_BYTES_THRESHOLD) ||
-            Runtime.getRuntime().availableProcessors() <= 2
+        val isLowPerformanceByDefault =
+            (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1 && isLowRamDevice) ||
+                (totalMem in 1L..900_000_000L) ||
+                Runtime.getRuntime().availableProcessors() <= 2
 
         val hasLeanbackFeature = pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK)
         val supportsBlur = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !isLowRamDevice

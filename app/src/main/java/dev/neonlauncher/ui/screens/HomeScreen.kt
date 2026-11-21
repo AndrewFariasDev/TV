@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -51,8 +52,8 @@ import androidx.tv.material3.Text
 import dev.neonlauncher.R
 import dev.neonlauncher.core.AppIconLoader
 import dev.neonlauncher.data.NeonThemeConfig
-import dev.neonlauncher.data.SortOrder
 import dev.neonlauncher.ui.components.AppCard
+import dev.neonlauncher.ui.components.ChooseAppsHudCard
 import dev.neonlauncher.ui.components.LeadingFocusIndicator
 import dev.neonlauncher.ui.components.NeonFocusEffects
 import dev.neonlauncher.ui.components.QuickActionCard
@@ -67,8 +68,8 @@ import java.util.Locale
 import kotlinx.coroutines.delay
 
 /**
- * Primary TV Home screen featuring clock/date header, Favorites row, sortable All Apps row,
- * device Quick Controls row, and visible D-pad shortcut bar.
+ * Primary TV Home screen featuring clock/date header, ONLY the user's selected Home apps
+ * (plus a quick "+ Choose Apps" selector card), device Quick Controls row, and D-pad shortcut bar.
  */
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
@@ -95,7 +96,7 @@ fun HomeScreen(
         uiState.contextMenuApp == null &&
         !uiState.isLoading
 
-    LaunchedEffect(isHomeActive, uiState.favoriteApps.isNotEmpty(), uiState.allApps.isNotEmpty()) {
+    LaunchedEffect(isHomeActive, uiState.favoriteApps.size) {
         if (isHomeActive) {
             runCatching { firstCardFocus.requestFocus() }
         }
@@ -120,35 +121,38 @@ fun HomeScreen(
             timeText = formattedTime,
             dateText = "$formattedDate  •  $themeDisplayName",
             isDefaultHome = uiState.capabilities.isDefaultHome,
+            onChooseAppsClick = actions::onOpenAppPicker,
             onSetupClick = actions::onOpenOnboarding,
             onSettingsClick = actions::onOpenSettings,
-            fallbackFocusRequester = if (uiState.favoriteApps.isEmpty() && uiState.allApps.isEmpty()) {
-                firstCardFocus
-            } else {
-                null
-            },
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(14.dp))
 
         LazyColumn(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth(),
-            contentPadding = PaddingValues(vertical = 4.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp),
+            contentPadding = PaddingValues(vertical = 6.dp),
+            verticalArrangement = Arrangement.spacedBy(18.dp),
         ) {
-            if (uiState.favoriteApps.isNotEmpty()) {
-                item(key = "favorites_section") {
-                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            item(key = "user_apps_section") {
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
                         SectionTitleRow(
                             title = stringResource(R.string.home_section_favorites),
                             badgeText = stringResource(R.string.home_favorites_count, uiState.favoriteApps.size),
                             accentColor = palette.accentPrimary,
                         )
+                    }
+
+                    if (uiState.favoriteApps.isNotEmpty()) {
                         LazyRow(
-                            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 10.dp),
-                            horizontalArrangement = Arrangement.spacedBy(16.dp),
+                            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 12.dp),
+                            horizontalArrangement = Arrangement.spacedBy(18.dp),
                         ) {
                             itemsIndexed(
                                 items = uiState.favoriteApps,
@@ -164,61 +168,39 @@ fun HomeScreen(
                                     modifier = if (index == 0) Modifier.focusRequester(firstCardFocus) else Modifier,
                                 )
                             }
-                        }
-                    }
-                }
-            }
 
-            item(key = "all_apps_section") {
-                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    ) {
-                        SectionTitleRow(
-                            title = stringResource(R.string.home_section_apps),
-                            badgeText = stringResource(R.string.home_apps_count, uiState.allApps.size),
-                            accentColor = palette.textPrimary,
-                        )
-                        SortOrderTogglePill(
-                            sortOrder = uiState.sortOrder,
-                            onClick = actions::onToggleSortOrder,
-                        )
-                    }
-
-                    if (uiState.allApps.isNotEmpty()) {
-                        LazyRow(
-                            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 10.dp),
-                            horizontalArrangement = Arrangement.spacedBy(14.dp),
-                        ) {
-                            itemsIndexed(
-                                items = uiState.allApps,
-                                key = { _, app -> "app_${app.packageName}_${app.activityName}" },
-                            ) { index, app ->
-                                val attachFocus = uiState.favoriteApps.isEmpty() && index == 0
-                                AppCard(
-                                    app = app,
-                                    iconLoader = iconLoader,
-                                    isFavorite = uiState.favoritePackages.contains(app.packageName),
-                                    featured = false,
-                                    onClick = { actions.onLaunchApp(app) },
-                                    onOpenContextMenu = { actions.onOpenContextMenu(app) },
-                                    modifier = if (attachFocus) Modifier.focusRequester(firstCardFocus) else Modifier,
+                            item(key = "choose_more_apps_tile") {
+                                ChooseAppsHudCard(
+                                    onClick = actions::onOpenAppPicker,
+                                    featured = true,
                                 )
                             }
                         }
-                    } else if (!uiState.isLoading) {
-                        EmptyAppsBanner(
-                            onOpenSettings = actions::onOpenSettings,
-                        )
+                    } else {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp),
+                            horizontalArrangement = Arrangement.spacedBy(18.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            ChooseAppsHudCard(
+                                onClick = actions::onOpenAppPicker,
+                                featured = true,
+                                modifier = Modifier.focusRequester(firstCardFocus),
+                            )
+                            EmptyAppsBanner(
+                                onChooseApps = actions::onOpenAppPicker,
+                                modifier = Modifier.weight(1f),
+                            )
+                        }
                     }
                 }
             }
 
             if (uiState.quickActions.isNotEmpty()) {
                 item(key = "quick_actions_section") {
-                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                         SectionTitleRow(
                             title = stringResource(R.string.home_section_quick_actions),
                             badgeText = null,
@@ -256,9 +238,9 @@ private fun HomeHeaderBar(
     timeText: String,
     dateText: String,
     isDefaultHome: Boolean,
+    onChooseAppsClick: () -> Unit,
     onSetupClick: () -> Unit,
     onSettingsClick: () -> Unit,
-    fallbackFocusRequester: FocusRequester? = null,
 ) {
     val palette = LocalNeonPalette.current
 
@@ -291,12 +273,14 @@ private fun HomeHeaderBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
+            HeaderPillButton(
+                label = stringResource(R.string.home_button_choose_apps),
+                iconRes = R.drawable.ic_neon_star,
+                accentDotColor = palette.accentPrimary,
+                onClick = onChooseAppsClick,
+            )
+
             val setupDescription = stringResource(R.string.cd_setup_button)
-            val setupModifier = if (fallbackFocusRequester != null) {
-                Modifier.focusRequester(fallbackFocusRequester)
-            } else {
-                Modifier
-            }
             HeaderPillButton(
                 label = stringResource(
                     if (isDefaultHome) R.string.home_button_default_home_active else R.string.home_button_setup,
@@ -304,7 +288,7 @@ private fun HomeHeaderBar(
                 iconRes = if (isDefaultHome) R.drawable.ic_neon_check else R.drawable.ic_neon_home,
                 accentDotColor = if (isDefaultHome) palette.accentPrimary else palette.accentSecondary,
                 onClick = onSetupClick,
-                modifier = setupModifier.semantics { contentDescription = setupDescription },
+                modifier = Modifier.semantics { contentDescription = setupDescription },
             )
 
             val settingsDescription = stringResource(R.string.cd_settings_button)
@@ -409,81 +393,24 @@ private fun SectionTitleRow(
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
-private fun SortOrderTogglePill(
-    sortOrder: SortOrder,
-    onClick: () -> Unit,
-) {
-    val palette = LocalNeonPalette.current
-    val interactionSource = remember { MutableInteractionSource() }
-    val isFocused by interactionSource.collectIsFocusedAsState()
-    val shape = RoundedCornerShape(50)
-    val sortDescription = stringResource(R.string.home_toggle_sort_cd)
-
-    Surface(
-        onClick = onClick,
-        interactionSource = interactionSource,
-        shape = NeonFocusEffects.cardShape(shape),
-        colors = NeonFocusEffects.cardColors(palette),
-        scale = NeonFocusEffects.cardScale(palette.performanceMode, focusedScale = 1.06f),
-        border = NeonFocusEffects.cardBorder(palette, shape),
-        glow = NeonFocusEffects.cardGlow(palette, elevation = 8.dp),
-        modifier = Modifier
-            .heightIn(min = 32.dp)
-            .semantics { contentDescription = sortDescription },
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(6.dp),
-        ) {
-            LeadingFocusIndicator(
-                isFocused = isFocused,
-                palette = palette,
-                height = 14.dp,
-            )
-            Icon(
-                painter = painterResource(R.drawable.ic_neon_sort),
-                contentDescription = null,
-                tint = palette.accentPrimary,
-                modifier = Modifier.size(14.dp),
-            )
-            Text(
-                text = stringResource(
-                    if (sortOrder == SortOrder.ALPHABETICAL) {
-                        R.string.home_sort_alphabetical
-                    } else {
-                        R.string.home_sort_recent
-                    },
-                ),
-                style = MaterialTheme.typography.labelMedium,
-                color = palette.accentPrimary,
-                maxLines = 1,
-            )
-        }
-    }
-}
-
-@OptIn(ExperimentalTvMaterial3Api::class)
-@Composable
 private fun EmptyAppsBanner(
-    onOpenSettings: () -> Unit,
+    onChooseApps: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val palette = LocalNeonPalette.current
-    val shape = RoundedCornerShape(16.dp)
+    val shape = CutCornerShape(topStart = 14.dp, bottomEnd = 14.dp, topEnd = 4.dp, bottomStart = 4.dp)
     Surface(
-        onClick = onOpenSettings,
+        onClick = onChooseApps,
         shape = NeonFocusEffects.cardShape(shape),
         colors = NeonFocusEffects.cardColors(palette),
         scale = NeonFocusEffects.cardScale(palette.performanceMode, focusedScale = 1.02f),
         border = NeonFocusEffects.cardBorder(palette, shape),
         glow = NeonFocusEffects.cardGlow(palette),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp),
+        modifier = modifier.heightIn(min = 128.dp),
     ) {
         Column(
             modifier = Modifier.padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(6.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Text(
                 text = stringResource(R.string.home_empty_apps_title),
