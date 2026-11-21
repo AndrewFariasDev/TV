@@ -1,0 +1,20 @@
+{
+  "id": "emerald-matrix",
+  "name": "Emerald Matrix",
+  "nameEs": "Matriz Esmeralda",
+  "author": "Neon Launcher",
+  "backgroundStyle": "GRID",
+  "colors": {
+    "backgroundStart": "#FF030B08",
+    "backgroundEnd": "#FF081F17",
+    "surface": "#14FFFFFF",
+    "surfaceFocused": "#26FFFFFF",
+    "surfaceBorder": "#4000F5A0",
+    "accentPrimary": "#FF00F5A0",
+    "accentSecondary": "#FF00D9F5",
+    "accentTertiary": "#FF80FF72",
+    "textPrimary": "#FFF0FFF8",
+    "textSecondary": "#FF9BCBB7",
+    "danger": "#FFFF5E7E"
+  }
+}

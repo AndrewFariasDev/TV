@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core & Manifest Strings -->
+    <string name="app_name">Neon Launcher</string>
+    <string name="dream_name">Salvapantallas Neon Aurora</string>
+
+    <!-- Quick Actions (Required by android-core) -->
+    <string name="quick_action_settings">Ajustes del sistema</string>
+    <string name="quick_action_wifi">Red y Wi-Fi</string>
+    <string name="quick_action_bluetooth">Bluetooth</string>
+    <string name="quick_action_display">Pantalla y sonido</string>
+    <string name="quick_action_tv_inputs">Entradas de TV</string>
+    <string name="quick_action_screensaver">Salvapantallas</string>
+
+    <!-- Status Toasts (Required by android-core) -->
+    <string name="status_launch_failed">No se pudo abrir la aplicación seleccionada</string>
+    <string name="status_action_unavailable">Este acceso del sistema no está disponible en tu TV</string>
+    <string name="status_home_reenabled">Modo inicio de Neon Launcher reactivado</string>
+    <string name="status_settings_reset">Ajustes restablecidos por defecto</string>
+
+    <!-- Home Screen -->
+    <string name="home_section_favorites">Favoritos</string>
+    <string name="home_section_apps">Aplicaciones</string>
+    <string name="home_section_quick_actions">Controles rápidos</string>
+    <string name="home_sort_alphabetical">Orden: A–Z</string>
+    <string name="home_sort_recent">Orden: Recientes</string>
+    <string name="home_toggle_sort_cd">Cambiar orden de aplicaciones</string>
+    <string name="home_button_setup">Configurar</string>
+    <string name="home_button_default_home_active">Inicio activo</string>
+    <string name="home_button_settings">Ajustes</string>
+    <string name="home_badge_leanback">TV</string>
+    <string name="home_badge_favorite">Fijada</string>
+    <string name="home_empty_apps_title">No hay aplicaciones visibles</string>
+    <string name="home_empty_apps_subtitle">Todas las apps están ocultas. Abre Ajustes para mostrarlas.</string>
+    <string name="home_hint_bar">OK: Abrir   •   Mantener OK / Menú: Opciones   •   D-Pad: Navegar</string>
+    <string name="home_apps_count">%1$d apps</string>
+    <string name="home_favorites_count">%1$d fijadas</string>
+
+    <!-- App Context Menu -->
+    <string name="context_menu_title">Opciones de app</string>
+    <string name="context_menu_subtitle_leanback">Aplicación Android TV</string>
+    <string name="context_menu_subtitle_standard">Aplicación estándar</string>
+    <string name="context_menu_pin_favorite">Fijar en Favoritos</string>
+    <string name="context_menu_unpin_favorite">Quitar de Favoritos</string>
+    <string name="context_menu_hide_app">Ocultar del inicio</string>
+    <string name="context_menu_app_info">Información de la app</string>
+    <string name="context_menu_uninstall">Desinstalar</string>
+    <string name="context_menu_close">Cerrar</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Ajustes de Neon</string>
+    <string name="settings_subtitle">Personaliza tema, efectos, rendimiento y pantalla de inicio</string>
+    <string name="settings_close">Volver al inicio</string>
+    <string name="settings_section_theme">Tema Neón</string>
+    <string name="settings_section_background">Estilo de fondo</string>
+    <string name="bg_style_aurora">Aurora</string>
+    <string name="bg_style_grid">Rejilla Cyber</string>
+    <string name="bg_style_solid">Sólido</string>
+    <string name="settings_section_display">Reloj y accesibilidad</string>
+    <string name="settings_clock_24h_title">Reloj de 24 horas</string>
+    <string name="settings_clock_24h_desc">Muestra la hora en formato 24 horas en la cabecera</string>
+    <string name="settings_perf_mode_title">Modo rendimiento</string>
+    <string name="settings_perf_mode_desc">Desactiva desenfoque, brillos intensos y animaciones para mayor fluidez</string>
+    <string name="settings_perf_mode_auto_hint">Recomendado automáticamente para este equipo</string>
+    <string name="settings_high_contrast_title">Modo alto contraste</string>
+    <string name="settings_high_contrast_desc">Refuerza los bordes de foco, tarjetas y legibilidad del texto</string>
+    <string name="settings_state_on">ACTIVO</string>
+    <string name="settings_state_off">INACTIVO</string>
+    <string name="settings_section_hidden_apps">Aplicaciones ocultas</string>
+    <string name="settings_no_hidden_apps">No hay aplicaciones ocultas</string>
+    <string name="settings_unhide_action">Mostrar %1$s</string>
+    <string name="settings_unhide_hint">Pulsa OK para restaurar al inicio</string>
+    <string name="settings_section_system">Inicio y salvapantallas</string>
+    <string name="settings_screensaver_title">Iniciar salvapantallas Neon</string>
+    <string name="settings_screensaver_desc">Previsualizar el salvapantallas ambiental Neon Aurora</string>
+    <string name="settings_set_default_home_title">Establecer como inicio</string>
+    <string name="settings_set_default_home_active">Activo como pantalla de inicio</string>
+    <string name="settings_set_default_home_desc">Asignar Neon Launcher como inicio predeterminado del TV</string>
+    <string name="settings_open_onboarding_title">Abrir guía de bienvenida</string>
+    <string name="settings_open_onboarding_desc">Ver compatibilidad del equipo y atajos del control</string>
+    <string name="settings_section_recovery">Restablecer y launcher original</string>
+    <string name="settings_reset_title">Restablecer ajustes</string>
+    <string name="settings_reset_desc">Restaurar tema, favoritos y apps ocultas por defecto</string>
+    <string name="settings_return_stock_title">Volver al launcher original</string>
+    <string name="settings_return_stock_desc">Desactiva el inicio de Neon Launcher y vuelve al launcher de fábrica</string>
+
+    <!-- Confirmations -->
+    <string name="confirm_reset_title">¿Restablecer ajustes de Neon Launcher?</string>
+    <string name="confirm_reset_message">Los favoritos, aplicaciones ocultas y preferencias de tema volverán a sus valores iniciales.</string>
+    <string name="confirm_reset_positive">Restablecer</string>
+    <string name="confirm_stock_title">¿Volver al launcher original de TV?</string>
+    <string name="confirm_stock_message">Esto desactiva el alias de inicio de Neon Launcher para volver al launcher de fábrica. Puedes reactivarlo cuando quieras.</string>
+    <string name="confirm_stock_positive">Volver al original</string>
+    <string name="confirm_cancel">Cancelar</string>
+
+    <!-- Onboarding Screen -->
+    <string name="onboarding_badge">BIENVENIDO A NEON LAUNCHER</string>
+    <string name="onboarding_title">Tu inicio futurista para TV</string>
+    <string name="onboarding_subtitle">Diseñado para respuesta rápida con D-pad, alto contraste y cero distracciones.</string>
+    <string name="onboarding_step_1_title">1. Navega con el D-Pad</string>
+    <string name="onboarding_step_1_desc">Muévete entre Favoritos, Aplicaciones y Controles rápidos. Pulsa OK para abrir.</string>
+    <string name="onboarding_step_2_title">2. Mantén OK para opciones</string>
+    <string name="onboarding_step_2_desc">Mantén pulsado OK o Menú/Info sobre cualquier app para fijarla, ocultarla o ver su info.</string>
+    <string name="onboarding_step_3_title">3. Establecer como inicio (Opcional)</string>
+    <string name="onboarding_step_3_desc">Abre Neon Launcher al pulsar Inicio. Puedes volver al original cuando quieras en Ajustes.</string>
+    <string name="onboarding_compat_title">Compatibilidad del dispositivo</string>
+    <string name="onboarding_compat_android">Android %1$s (API %2$d)</string>
+    <string name="onboarding_compat_leanback_yes">Android TV Leanback</string>
+    <string name="onboarding_compat_leanback_no">Pantalla estándar</string>
+    <string name="onboarding_compat_tier_low">Perfil rendimiento</string>
+    <string name="onboarding_compat_tier_full">Efectos Neon completos</string>
+    <string name="onboarding_compat_blur_yes">Desenfoque hardware</string>
+    <string name="onboarding_compat_blur_no">Modo Aurora/Sólido</string>
+    <string name="onboarding_compat_role_yes">RoleManager listo</string>
+    <string name="onboarding_compat_role_no">Selector clásico</string>
+    <string name="onboarding_btn_set_home">Establecer como inicio</string>
+    <string name="onboarding_btn_home_active">Inicio predeterminado activo</string>
+    <string name="onboarding_btn_continue">Omitir / Continuar</string>
+
+    <!-- Safe Mode Recovery Screen -->
+    <string name="safe_mode_badge">RECUPERACIÓN MODO SEGURO</string>
+    <string name="safe_mode_title">Modo inicio pausado temporalmente</string>
+    <string name="safe_mode_explanation">Neon Launcher detectó 3 cierres en menos de 2 minutos y desactivó su alias de inicio automáticamente para mantener el TV operativo.</string>
+    <string name="safe_mode_crash_label">Resumen de diagnóstico</string>
+    <string name="safe_mode_no_details">No se registraron detalles del fallo.</string>
+    <string name="safe_mode_btn_reenable">Reactivar inicio</string>
+    <string name="safe_mode_btn_continue">Continuar manualmente</string>
+    <string name="safe_mode_btn_reset">Restablecer ajustes</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_app_icon">Icono de %1$s</string>
+    <string name="cd_quick_action">Control rápido: %1$s</string>
+    <string name="cd_settings_button">Abrir ajustes de Neon Launcher</string>
+    <string name="cd_setup_button">Abrir guía de bienvenida y configuración</string>
+    <string name="cd_theme_swatch">Seleccionar tema %1$s</string>
+    <string name="cd_status_banner">Notificación de estado</string>
+</resources>

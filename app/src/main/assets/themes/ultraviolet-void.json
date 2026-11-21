@@ -1,0 +1,20 @@
+{
+  "id": "ultraviolet-void",
+  "name": "Ultraviolet Void",
+  "nameEs": "Vacío Ultravioleta",
+  "author": "Neon Launcher",
+  "backgroundStyle": "AURORA",
+  "colors": {
+    "backgroundStart": "#FF060412",
+    "backgroundEnd": "#FF140D33",
+    "surface": "#14FFFFFF",
+    "surfaceFocused": "#26FFFFFF",
+    "surfaceBorder": "#409D4EDD",
+    "accentPrimary": "#FF9D4EDD",
+    "accentSecondary": "#FF38BDF8",
+    "accentTertiary": "#FFC084FC",
+    "textPrimary": "#FFF5F3FF",
+    "textSecondary": "#FFB8B2D8",
+    "danger": "#FFFF5370"
+  }
+}

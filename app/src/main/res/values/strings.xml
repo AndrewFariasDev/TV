@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core & Manifest Strings -->
+    <string name="app_name">Neon Launcher</string>
+    <string name="dream_name">Neon Aurora Screensaver</string>
+
+    <!-- Quick Actions (Required by android-core) -->
+    <string name="quick_action_settings">System Settings</string>
+    <string name="quick_action_wifi">Network &amp; Wi-Fi</string>
+    <string name="quick_action_bluetooth">Bluetooth</string>
+    <string name="quick_action_display">Display &amp; Sound</string>
+    <string name="quick_action_tv_inputs">TV Inputs</string>
+    <string name="quick_action_screensaver">Screensaver</string>
+
+    <!-- Status Toasts (Required by android-core) -->
+    <string name="status_launch_failed">Could not open the selected app</string>
+    <string name="status_action_unavailable">This system shortcut is unavailable on this TV</string>
+    <string name="status_home_reenabled">Neon Launcher Home entry re-enabled</string>
+    <string name="status_settings_reset">Settings restored to defaults</string>
+
+    <!-- Home Screen -->
+    <string name="home_section_favorites">Favorites</string>
+    <string name="home_section_apps">All Apps</string>
+    <string name="home_section_quick_actions">Quick Controls</string>
+    <string name="home_sort_alphabetical">Sort: A–Z</string>
+    <string name="home_sort_recent">Sort: Recent</string>
+    <string name="home_toggle_sort_cd">Toggle app sort order</string>
+    <string name="home_button_setup">Setup</string>
+    <string name="home_button_default_home_active">Home Active</string>
+    <string name="home_button_settings">Settings</string>
+    <string name="home_badge_leanback">TV</string>
+    <string name="home_badge_favorite">Pinned</string>
+    <string name="home_empty_apps_title">No visible apps</string>
+    <string name="home_empty_apps_subtitle">All apps are currently hidden. Open Settings to unhide them.</string>
+    <string name="home_hint_bar">OK: Open   •   Hold OK / Menu: Options   •   D-Pad: Navigate</string>
+    <string name="home_apps_count">%1$d apps</string>
+    <string name="home_favorites_count">%1$d pinned</string>
+
+    <!-- App Context Menu -->
+    <string name="context_menu_title">App Options</string>
+    <string name="context_menu_subtitle_leanback">Android TV App</string>
+    <string name="context_menu_subtitle_standard">Standard App</string>
+    <string name="context_menu_pin_favorite">Pin to Favorites</string>
+    <string name="context_menu_unpin_favorite">Remove from Favorites</string>
+    <string name="context_menu_hide_app">Hide from Home</string>
+    <string name="context_menu_app_info">App Info</string>
+    <string name="context_menu_uninstall">Uninstall</string>
+    <string name="context_menu_close">Close</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Neon Settings</string>
+    <string name="settings_subtitle">Personalize theme, visuals, performance, and Home behavior</string>
+    <string name="settings_close">Back to Home</string>
+    <string name="settings_section_theme">Neon Theme</string>
+    <string name="settings_section_background">Background Style</string>
+    <string name="bg_style_aurora">Aurora</string>
+    <string name="bg_style_grid">Cyber Grid</string>
+    <string name="bg_style_solid">Solid</string>
+    <string name="settings_section_display">Clock &amp; Accessibility</string>
+    <string name="settings_clock_24h_title">24-Hour Clock</string>
+    <string name="settings_clock_24h_desc">Display time in 24-hour format on the Home header</string>
+    <string name="settings_perf_mode_title">Performance Mode</string>
+    <string name="settings_perf_mode_desc">Disables blur, heavy glow, and animations for smoother TV navigation</string>
+    <string name="settings_perf_mode_auto_hint">Auto-recommended for this device</string>
+    <string name="settings_high_contrast_title">High Contrast Mode</string>
+    <string name="settings_high_contrast_desc">Strengthens focus borders, surface separation, and text legibility</string>
+    <string name="settings_state_on">ON</string>
+    <string name="settings_state_off">OFF</string>
+    <string name="settings_section_hidden_apps">Hidden Apps</string>
+    <string name="settings_no_hidden_apps">No hidden apps</string>
+    <string name="settings_unhide_action">Unhide %1$s</string>
+    <string name="settings_unhide_hint">Press OK to restore to Home</string>
+    <string name="settings_section_system">Home &amp; Screensaver</string>
+    <string name="settings_screensaver_title">Start Neon Screensaver</string>
+    <string name="settings_screensaver_desc">Preview the ambient Neon Aurora Daydream</string>
+    <string name="settings_set_default_home_title">Set as Default Home</string>
+    <string name="settings_set_default_home_active">Currently Default Home</string>
+    <string name="settings_set_default_home_desc">Assign Neon Launcher as your TV Home screen</string>
+    <string name="settings_open_onboarding_title">Open Welcome Guide</string>
+    <string name="settings_open_onboarding_desc">Review device compatibility and D-pad shortcuts</string>
+    <string name="settings_section_recovery">Reset &amp; Stock Launcher</string>
+    <string name="settings_reset_title">Reset Settings</string>
+    <string name="settings_reset_desc">Restore default theme, favorites, and hidden apps</string>
+    <string name="settings_return_stock_title">Return to Stock Launcher</string>
+    <string name="settings_return_stock_desc">Disables Neon Launcher Home role and switches back to the factory TV launcher</string>
+
+    <!-- Confirmations -->
+    <string name="confirm_reset_title">Reset Neon Launcher settings?</string>
+    <string name="confirm_reset_message">Favorites, hidden apps, and theme preferences will return to their defaults.</string>
+    <string name="confirm_reset_positive">Reset</string>
+    <string name="confirm_stock_title">Return to Stock TV Launcher?</string>
+    <string name="confirm_stock_message">This disables Neon Launcher\'s Home alias so your TV falls back to the factory launcher. You can re-enable it anytime.</string>
+    <string name="confirm_stock_positive">Return to Stock</string>
+    <string name="confirm_cancel">Cancel</string>
+
+    <!-- Onboarding Screen -->
+    <string name="onboarding_badge">WELCOME TO NEON LAUNCHER</string>
+    <string name="onboarding_title">Your Futuristic TV Home</string>
+    <string name="onboarding_subtitle">Crafted for crisp D-pad responsiveness, deep contrast, and zero clutter.</string>
+    <string name="onboarding_step_1_title">1. Navigate with D-Pad</string>
+    <string name="onboarding_step_1_desc">Move across Favorites, Apps, and Quick Controls. Press OK to launch instantly.</string>
+    <string name="onboarding_step_2_title">2. Hold OK for App Options</string>
+    <string name="onboarding_step_2_desc">Long-press OK or press Menu/Info on any app to pin, hide, inspect, or uninstall.</string>
+    <string name="onboarding_step_3_title">3. Set as Default Home (Optional)</string>
+    <string name="onboarding_step_3_desc">Open Neon Launcher when pressing Home. Return to Stock anytime inside Settings.</string>
+    <string name="onboarding_compat_title">Device Compatibility</string>
+    <string name="onboarding_compat_android">Android %1$s (API %2$d)</string>
+    <string name="onboarding_compat_leanback_yes">Leanback TV</string>
+    <string name="onboarding_compat_leanback_no">Standard Display</string>
+    <string name="onboarding_compat_tier_low">Performance Tier</string>
+    <string name="onboarding_compat_tier_full">Full Neon Effects</string>
+    <string name="onboarding_compat_blur_yes">Hardware Blur</string>
+    <string name="onboarding_compat_blur_no">Aurora/Solid Safe</string>
+    <string name="onboarding_compat_role_yes">RoleManager Ready</string>
+    <string name="onboarding_compat_role_no">Classic Home Picker</string>
+    <string name="onboarding_btn_set_home">Set as Home</string>
+    <string name="onboarding_btn_home_active">Default Home Active</string>
+    <string name="onboarding_btn_continue">Skip / Continue</string>
+
+    <!-- Safe Mode Recovery Screen -->
+    <string name="safe_mode_badge">SAFE MODE RECOVERY</string>
+    <string name="safe_mode_title">Home Mode Temporarily Disabled</string>
+    <string name="safe_mode_explanation">Neon Launcher detected 3 crashes within 2 minutes and paused its Home alias automatically so your TV remains accessible.</string>
+    <string name="safe_mode_crash_label">Diagnostic Summary</string>
+    <string name="safe_mode_no_details">No crash details recorded.</string>
+    <string name="safe_mode_btn_reenable">Re-enable Home</string>
+    <string name="safe_mode_btn_continue">Continue Manually</string>
+    <string name="safe_mode_btn_reset">Reset Settings</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_app_icon">%1$s app icon</string>
+    <string name="cd_quick_action">Quick control: %1$s</string>
+    <string name="cd_settings_button">Open Neon Launcher settings</string>
+    <string name="cd_setup_button">Open welcome guide and Home setup</string>
+    <string name="cd_theme_swatch">Select theme %1$s</string>
+    <string name="cd_status_banner">Status notification</string>
+</resources>

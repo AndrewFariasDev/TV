@@ -1,0 +1,20 @@
+{
+  "id": "cyber-cyan",
+  "name": "Cyber Cyan",
+  "nameEs": "Cian Cyber",
+  "author": "Neon Launcher",
+  "backgroundStyle": "AURORA",
+  "colors": {
+    "backgroundStart": "#FF05060F",
+    "backgroundEnd": "#FF0B0F24",
+    "surface": "#14FFFFFF",
+    "surfaceFocused": "#26FFFFFF",
+    "surfaceBorder": "#4000F0FF",
+    "accentPrimary": "#FF00F0FF",
+    "accentSecondary": "#FFFF2BD6",
+    "accentTertiary": "#FF8A5CFF",
+    "textPrimary": "#FFF4F7FF",
+    "textSecondary": "#FFA8B3CF",
+    "danger": "#FFFF4D6D"
+  }
+}

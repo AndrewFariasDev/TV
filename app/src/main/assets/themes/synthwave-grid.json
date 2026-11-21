@@ -1,0 +1,20 @@
+{
+  "id": "synthwave-grid",
+  "name": "Synthwave Grid",
+  "nameEs": "Rejilla Synthwave",
+  "author": "Neon Launcher",
+  "backgroundStyle": "GRID",
+  "colors": {
+    "backgroundStart": "#FF0E0516",
+    "backgroundEnd": "#FF220A2E",
+    "surface": "#14FFFFFF",
+    "surfaceFocused": "#26FFFFFF",
+    "surfaceBorder": "#40FF7A18",
+    "accentPrimary": "#FFFF7A18",
+    "accentSecondary": "#FFFF2BD6",
+    "accentTertiary": "#FFB55CFF",
+    "textPrimary": "#FFFFF6FA",
+    "textSecondary": "#FFD5B8D8",
+    "danger": "#FFFF4757"
+  }
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Outer neon hexagonal frame inside 66dp safe zone -->
+    <path
+        android:pathData="M54,24 L79,38.5 L79,69.5 L54,84 L29,69.5 L29,38.5 Z"
+        android:fillColor="#1AFFFFFF"
+        android:strokeWidth="2.8"
+        android:strokeLineJoin="round">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="29"
+                android:startY="24"
+                android:endX="79"
+                android:endY="84"
+                android:type="linear">
+                <item android:color="#FF00F0FF" android:offset="0" />
+                <item android:color="#FF8A5CFF" android:offset="0.5" />
+                <item android:color="#FFFF2BD6" android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Inner subtle glow ring -->
+    <path
+        android:pathData="M54,29 L74.5,41 L74.5,67 L54,79 L33.5,67 L33.5,41 Z"
+        android:strokeWidth="1"
+        android:strokeColor="#5500F0FF" />
+    <!-- Futuristic Neon 'N' emblem -->
+    <path
+        android:pathData="M41.5,67 V41 L66.5,67 V41"
+        android:strokeWidth="6.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="40"
+                android:startY="40"
+                android:endX="68"
+                android:endY="68"
+                android:type="linear">
+                <item android:color="#FF00F0FF" android:offset="0" />
+                <item android:color="#FFF4F7FF" android:offset="0.5" />
+                <item android:color="#FFFF2BD6" android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Glowing diagonal core highlight -->
+    <path
+        android:pathData="M41.5,67 V41 L66.5,67 V41"
+        android:strokeWidth="2.2"
+        android:strokeColor="#FFF4F7FF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>
