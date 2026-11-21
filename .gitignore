@@ -1,0 +1,44 @@
+# Gradle & Android build outputs
+.gradle/
+build/
+*/build/
+app/build/
+dist/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.hprof
+
+# Built Android packages
+*.apk
+*.ap_
+*.aab
+
+# Signing keys & keystores (never commit secrets!)
+*.jks
+*.keystore
+*.p12
+*.pfx
+keystore/
+
+# IDE & editor files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.fleet/
+
+# OS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs & temporary files
+*.log
+*.tmp
+*.bak
