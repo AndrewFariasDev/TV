@@ -15,9 +15,14 @@ import dev.neonlauncher.core.resolveActivityCompat
  * verifying intent resolution before exposing any shortcut.
  */
 object QuickActionsResolver {
+    private val homeQuickActionTypes = listOf(
+        QuickActionType.WIFI,
+        QuickActionType.TV_INPUTS,
+    )
+
     fun resolveAvailableActions(context: Context): List<QuickAction> {
         return buildList {
-            for (type in QuickActionType.entries) {
+            for (type in homeQuickActionTypes) {
                 if (resolveIntent(context, type) != null) {
                     add(QuickAction(type = type, labelRes = labelResFor(type)))
                 }

@@ -1,8 +1,7 @@
 package dev.neonlauncher.ui.screens
 
 import android.text.format.DateFormat
-import androidx.annotation.DrawableRes
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Arrangement
@@ -22,7 +21,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CutCornerShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -31,9 +29,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.painterResource
@@ -43,18 +41,18 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.tv.material3.Border
+import androidx.tv.material3.ClickableSurfaceDefaults
 import androidx.tv.material3.ExperimentalTvMaterial3Api
+import androidx.tv.material3.Glow
 import androidx.tv.material3.Icon
 import androidx.tv.material3.MaterialTheme
 import androidx.tv.material3.Surface
-import androidx.tv.material3.SurfaceDefaults
 import androidx.tv.material3.Text
 import dev.neonlauncher.R
 import dev.neonlauncher.core.AppIconLoader
 import dev.neonlauncher.data.NeonThemeConfig
 import dev.neonlauncher.ui.components.AppCard
 import dev.neonlauncher.ui.components.ChooseAppsHudCard
-import dev.neonlauncher.ui.components.LeadingFocusIndicator
 import dev.neonlauncher.ui.components.NeonFocusEffects
 import dev.neonlauncher.ui.components.QuickActionCard
 import dev.neonlauncher.ui.theme.LocalNeonPalette
@@ -68,8 +66,8 @@ import java.util.Locale
 import kotlinx.coroutines.delay
 
 /**
- * Primary TV Home screen featuring clock/date header, ONLY the user's selected Home apps
- * (plus a quick "+ Choose Apps" selector card), device Quick Controls row, and D-pad shortcut bar.
+ * Primary TV Home screen featuring clock/date header, frameless gear settings button,
+ * ONLY the user's selected Home apps (+ Choose Apps card), and minimalist Quick Controls.
  */
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
@@ -120,9 +118,6 @@ fun HomeScreen(
         HomeHeaderBar(
             timeText = formattedTime,
             dateText = "$formattedDate  •  $themeDisplayName",
-            isDefaultHome = uiState.capabilities.isDefaultHome,
-            onChooseAppsClick = actions::onOpenAppPicker,
-            onSetupClick = actions::onOpenOnboarding,
             onSettingsClick = actions::onOpenSettings,
         )
 
@@ -137,17 +132,11 @@ fun HomeScreen(
         ) {
             item(key = "user_apps_section") {
                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    ) {
-                        SectionTitleRow(
-                            title = stringResource(R.string.home_section_favorites),
-                            badgeText = stringResource(R.string.home_favorites_count, uiState.favoriteApps.size),
-                            accentColor = palette.accentPrimary,
-                        )
-                    }
+                    SectionTitleRow(
+                        title = stringResource(R.string.home_section_favorites),
+                        badgeText = stringResource(R.string.home_favorites_count, uiState.favoriteApps.size),
+                        accentColor = palette.accentPrimary,
+                    )
 
                     if (uiState.favoriteApps.isNotEmpty()) {
                         LazyRow(
@@ -208,7 +197,7 @@ fun HomeScreen(
                         )
                         LazyRow(
                             contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
-                            horizontalArrangement = Arrangement.spacedBy(12.dp),
+                            horizontalArrangement = Arrangement.spacedBy(14.dp),
                         ) {
                             itemsIndexed(
                                 items = uiState.quickActions,
@@ -224,12 +213,6 @@ fun HomeScreen(
                 }
             }
         }
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        DpadHintFooter(
-            hintText = stringResource(R.string.home_hint_bar),
-        )
     }
 }
 
@@ -237,9 +220,6 @@ fun HomeScreen(
 private fun HomeHeaderBar(
     timeText: String,
     dateText: String,
-    isDefaultHome: Boolean,
-    onChooseAppsClick: () -> Unit,
-    onSetupClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
     val palette = LocalNeonPalette.current
@@ -269,94 +249,69 @@ private fun HomeHeaderBar(
             )
         }
 
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            HeaderPillButton(
-                label = stringResource(R.string.home_button_choose_apps),
-                iconRes = R.drawable.ic_neon_star,
-                accentDotColor = palette.accentPrimary,
-                onClick = onChooseAppsClick,
-            )
-
-            val setupDescription = stringResource(R.string.cd_setup_button)
-            HeaderPillButton(
-                label = stringResource(
-                    if (isDefaultHome) R.string.home_button_default_home_active else R.string.home_button_setup,
-                ),
-                iconRes = if (isDefaultHome) R.drawable.ic_neon_check else R.drawable.ic_neon_home,
-                accentDotColor = if (isDefaultHome) palette.accentPrimary else palette.accentSecondary,
-                onClick = onSetupClick,
-                modifier = Modifier.semantics { contentDescription = setupDescription },
-            )
-
-            val settingsDescription = stringResource(R.string.cd_settings_button)
-            HeaderPillButton(
-                label = stringResource(R.string.home_button_settings),
-                iconRes = R.drawable.ic_neon_settings,
-                accentDotColor = null,
-                onClick = onSettingsClick,
-                modifier = Modifier.semantics { contentDescription = settingsDescription },
-            )
-        }
+        SettingsGearIconButton(onClick = onSettingsClick)
     }
 }
 
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
-private fun HeaderPillButton(
-    label: String,
-    @DrawableRes iconRes: Int,
-    accentDotColor: Color?,
+private fun SettingsGearIconButton(
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     val palette = LocalNeonPalette.current
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused by interactionSource.collectIsFocusedAsState()
-    val shape = RoundedCornerShape(50)
+    val settingsDescription = stringResource(R.string.cd_settings_button)
 
     Surface(
         onClick = onClick,
         interactionSource = interactionSource,
-        shape = NeonFocusEffects.cardShape(shape),
-        colors = NeonFocusEffects.cardColors(palette),
-        scale = NeonFocusEffects.cardScale(palette.performanceMode, focusedScale = 1.06f),
-        border = NeonFocusEffects.cardBorder(palette, shape),
-        glow = NeonFocusEffects.cardGlow(palette, elevation = 10.dp),
-        modifier = modifier.heightIn(min = 40.dp),
+        shape = NeonFocusEffects.cardShape(CircleShape),
+        colors = ClickableSurfaceDefaults.colors(
+            containerColor = Color.Transparent,
+            contentColor = palette.textPrimary,
+            focusedContainerColor = Color.Transparent,
+            focusedContentColor = palette.accentPrimary,
+            pressedContainerColor = Color.Transparent,
+            pressedContentColor = palette.accentPrimary,
+        ),
+        scale = NeonFocusEffects.cardScale(palette.performanceMode, focusedScale = 1.24f),
+        border = ClickableSurfaceDefaults.border(
+            border = Border.None,
+            focusedBorder = Border.None,
+            pressedBorder = Border.None,
+            disabledBorder = Border.None,
+        ),
+        glow = ClickableSurfaceDefaults.glow(
+            glow = Glow.None,
+            focusedGlow = Glow.None,
+            pressedGlow = Glow.None,
+        ),
+        modifier = Modifier
+            .size(48.dp)
+            .semantics { contentDescription = settingsDescription },
     ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 9.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center,
         ) {
-            LeadingFocusIndicator(
-                isFocused = isFocused,
-                palette = palette,
-                height = 16.dp,
-            )
-            if (accentDotColor != null) {
-                Box(
-                    modifier = Modifier
-                        .size(8.dp)
-                        .clip(CircleShape)
-                        .background(accentDotColor),
-                )
+            if (isFocused) {
+                Canvas(modifier = Modifier.fillMaxSize()) {
+                    drawCircle(
+                        brush = Brush.radialGradient(
+                            colors = listOf(
+                                palette.accentPrimary.copy(alpha = 0.38f),
+                                Color.Transparent,
+                            ),
+                        ),
+                    )
+                }
             }
             Icon(
-                painter = painterResource(iconRes),
+                painter = painterResource(R.drawable.ic_neon_settings),
                 contentDescription = null,
-                tint = if (isFocused) palette.accentPrimary else palette.textPrimary,
-                modifier = Modifier.size(16.dp),
-            )
-            Text(
-                text = label,
-                style = MaterialTheme.typography.labelLarge,
-                color = palette.textPrimary,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+                tint = if (isFocused) palette.accentPrimary else palette.textPrimary.copy(alpha = 0.80f),
+                modifier = Modifier.size(30.dp),
             )
         }
     }
@@ -423,39 +378,6 @@ private fun EmptyAppsBanner(
                 color = palette.textSecondary,
             )
         }
-    }
-}
-
-@OptIn(ExperimentalTvMaterial3Api::class)
-@Composable
-private fun DpadHintFooter(
-    hintText: String,
-) {
-    val palette = LocalNeonPalette.current
-    val shape = RoundedCornerShape(50)
-    Surface(
-        shape = shape,
-        colors = SurfaceDefaults.colors(
-            containerColor = palette.surface,
-            contentColor = palette.textSecondary,
-        ),
-        border = Border(
-            border = androidx.compose.foundation.BorderStroke(
-                width = if (palette.highContrast) 1.5.dp else 1.dp,
-                color = palette.surfaceBorder,
-            ),
-            shape = shape,
-        ),
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Text(
-            text = hintText,
-            style = MaterialTheme.typography.bodySmall,
-            color = palette.textSecondary,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp),
-        )
     }
 }
 

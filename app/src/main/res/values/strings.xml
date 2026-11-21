@@ -20,19 +20,13 @@
 
     <!-- Home Screen -->
     <string name="home_section_favorites">My Apps</string>
-    <string name="home_section_apps">All Installed Apps</string>
     <string name="home_section_quick_actions">Quick Controls</string>
-    <string name="home_button_choose_apps">Choose Apps</string>
-    <string name="home_button_setup">Setup</string>
-    <string name="home_button_default_home_active">Home Active</string>
-    <string name="home_button_settings">Settings</string>
     <string name="home_badge_leanback">TV</string>
     <string name="home_badge_favorite">On Home</string>
     <string name="home_add_apps_card_title">Choose Home Apps</string>
     <string name="home_add_apps_card_subtitle">Select only the apps you want on your menu</string>
     <string name="home_empty_apps_title">Choose the apps for your Home menu</string>
     <string name="home_empty_apps_subtitle">Press OK here to pick only the apps you want displayed on this screen.</string>
-    <string name="home_hint_bar">OK: Launch   •   Hold OK / Menu: Options   •   + Choose Apps: Customize Menu</string>
     <string name="home_apps_count">%1$d installed</string>
     <string name="home_favorites_count">%1$d selected</string>
 
@@ -80,6 +74,8 @@
     <string name="settings_unhide_action">Unhide %1$s</string>
     <string name="settings_unhide_hint">Press OK to restore to Home</string>
     <string name="settings_section_system">Home &amp; Screensaver</string>
+    <string name="settings_choose_apps_desc">Select which apps appear on the Home menu</string>
+    <string name="settings_tv_system_desc">Open native Android TV device settings</string>
     <string name="settings_screensaver_title">Start Neon Screensaver</string>
     <string name="settings_screensaver_desc">Preview the ambient Neon Aurora Daydream</string>
     <string name="settings_set_default_home_title">Set as Default Home</string>
@@ -140,7 +136,6 @@
     <string name="cd_app_icon">%1$s app icon</string>
     <string name="cd_quick_action">Quick control: %1$s</string>
     <string name="cd_settings_button">Open Neon Launcher settings</string>
-    <string name="cd_setup_button">Open welcome guide and Home setup</string>
     <string name="cd_theme_swatch">Select theme %1$s</string>
     <string name="cd_status_banner">Status notification</string>
 </resources>

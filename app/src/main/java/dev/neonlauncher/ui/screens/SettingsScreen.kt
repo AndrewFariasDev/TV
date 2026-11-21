@@ -226,6 +226,31 @@ fun SettingsScreen(
                     SettingsSectionLabel(text = stringResource(R.string.settings_section_system))
                 }
 
+                item(key = "action_choose_apps") {
+                    SettingsActionRow(
+                        iconRes = R.drawable.ic_neon_star,
+                        title = stringResource(R.string.app_picker_title),
+                        description = stringResource(R.string.settings_choose_apps_desc),
+                        onClick = actions::onOpenAppPicker,
+                    )
+                }
+
+                item(key = "action_tv_system_settings") {
+                    SettingsActionRow(
+                        iconRes = R.drawable.ic_neon_settings,
+                        title = stringResource(R.string.quick_action_settings),
+                        description = stringResource(R.string.settings_tv_system_desc),
+                        onClick = {
+                            actions.onQuickAction(
+                                QuickAction(
+                                    type = QuickActionType.SETTINGS,
+                                    labelRes = R.string.quick_action_settings,
+                                ),
+                            )
+                        },
+                    )
+                }
+
                 if (uiState.capabilities.supportsDreamService) {
                     item(key = "action_screensaver") {
                         SettingsActionRow(

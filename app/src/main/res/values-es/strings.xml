@@ -20,19 +20,13 @@
 
     <!-- Home Screen -->
     <string name="home_section_favorites">Mis aplicaciones</string>
-    <string name="home_section_apps">Todas las instaladas</string>
     <string name="home_section_quick_actions">Controles rápidos</string>
-    <string name="home_button_choose_apps">Elegir apps</string>
-    <string name="home_button_setup">Configurar</string>
-    <string name="home_button_default_home_active">Inicio activo</string>
-    <string name="home_button_settings">Ajustes</string>
     <string name="home_badge_leanback">TV</string>
     <string name="home_badge_favorite">En inicio</string>
     <string name="home_add_apps_card_title">Elegir apps del inicio</string>
     <string name="home_add_apps_card_subtitle">Selecciona solo las apps que quieras ver aquí</string>
     <string name="home_empty_apps_title">Elige las aplicaciones para tu menú de inicio</string>
     <string name="home_empty_apps_subtitle">Pulsa OK aquí para marcar únicamente las aplicaciones que quieres mostrar en tu pantalla principal.</string>
-    <string name="home_hint_bar">OK: Abrir   •   Mantener OK / Menú: Opciones   •   + Elegir apps: Personalizar</string>
     <string name="home_apps_count">%1$d instaladas</string>
     <string name="home_favorites_count">%1$d elegidas</string>
 
@@ -80,6 +74,8 @@
     <string name="settings_unhide_action">Mostrar %1$s</string>
     <string name="settings_unhide_hint">Pulsa OK para restaurar al inicio</string>
     <string name="settings_section_system">Inicio y salvapantallas</string>
+    <string name="settings_choose_apps_desc">Elige qué aplicaciones aparecen en el menú de inicio</string>
+    <string name="settings_tv_system_desc">Abrir los ajustes nativos del sistema del TV</string>
     <string name="settings_screensaver_title">Iniciar salvapantallas Neon</string>
     <string name="settings_screensaver_desc">Previsualizar el salvapantallas ambiental Neon Aurora</string>
     <string name="settings_set_default_home_title">Establecer como inicio</string>
@@ -140,7 +136,6 @@
     <string name="cd_app_icon">Icono de %1$s</string>
     <string name="cd_quick_action">Control rápido: %1$s</string>
     <string name="cd_settings_button">Abrir ajustes de Neon Launcher</string>
-    <string name="cd_setup_button">Abrir guía de bienvenida y configuración</string>
     <string name="cd_theme_swatch">Seleccionar tema %1$s</string>
     <string name="cd_status_banner">Notificación de estado</string>
 </resources>
