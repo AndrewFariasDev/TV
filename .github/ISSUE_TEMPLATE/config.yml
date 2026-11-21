@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a Security Vulnerability (Private)
+    url: https://github.com/OWNER/REPO/security/advisories/new
+    about: Please report security issues or crash-loop exploits privately instead of opening a public issue.
+  - name: Troubleshooting Guide
+    url: https://github.com/OWNER/REPO/blob/main/docs/TROUBLESHOOTING.md
+    about: Check common fixes for stuck HOME buttons, Safe Mode, ADB setup, and signature update conflicts first.
+  - name: Compatibility Matrix & Setup Guide
+    url: https://github.com/OWNER/REPO/blob/main/docs/COMPATIBILITY.md
+    about: Check supported platforms and how to submit a hardware compatibility report.

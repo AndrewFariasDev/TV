@@ -1,0 +1,32 @@
+name: Translation / Localization
+description: Propose a new language translation or fix an existing English/Spanish string.
+title: "[Translation]: "
+labels: ["translation"]
+body:
+  - type: input
+    id: language
+    attributes:
+      label: Language & ISO code
+      description: Language name and Android resource qualifier (e.g. `fr`, `de`, `pt-rBR`, `es`).
+      placeholder: e.g. French (values-fr)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Translation Scope
+      options:
+        - New Android strings translation (`app/src/main/res/values-<lang>/strings.xml`)
+        - Improvement/fix to existing English or Spanish UI strings
+        - Documentation translation (`README.<lang>.md` / `docs/`)
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details & RTL notes
+      description: Share context, proposed string changes, or note whether the language is right-to-left (RTL).
+    validations:
+      required: true

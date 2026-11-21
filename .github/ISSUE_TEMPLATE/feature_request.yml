@@ -1,0 +1,36 @@
+name: Feature Request
+description: Suggest an offline-friendly feature or D-pad UX improvement for Neon Launcher.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Neon Launcher is strictly **offline-first** (zero `INTERNET` permission, zero GMS/Firebase, zero telemetry/ads).
+        Please ensure your idea respects this privacy model and works cleanly with a TV remote D-pad.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What TV launcher pain point does this solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed behavior & D-pad interaction
+      description: Describe how the user would navigate and trigger this feature using only a TV remote.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: scope_check
+    attributes:
+      label: Offline & Scope Alignment
+      options:
+        - label: Does NOT require INTERNET permission, cloud sync, or Google Mobile Services
+          required: true
+        - label: Works cleanly with standard TV D-pad controls (`Up/Down/Left/Right`, `OK`, `Menu`, `Back`)
+          required: true

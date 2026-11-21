@@ -1,0 +1,64 @@
+name: Bug Report
+description: Report a crash, D-pad navigation issue, UI bug, or Safe Mode trigger.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve Neon Launcher!
+        **Privacy reminder:** Never include personal IP addresses, device serial numbers, MAC addresses, or Google/user account emails.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug clearly, including what you expected to happen instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Exact D-pad button presses or settings actions needed to trigger the issue.
+      placeholder: |
+        1. Open Neon Launcher
+        2. Navigate to ...
+        3. Press OK / Hold OK / Menu / Back
+    validations:
+      required: true
+
+  - type: input
+    id: app_version
+    attributes:
+      label: Neon Launcher version & APK source
+      description: Release tag (e.g. v1.0.0) or CI artifact / local build, plus whether release or debug-fallback signed.
+      placeholder: v1.0.0 (GitHub Release)
+    validations:
+      required: true
+
+  - type: input
+    id: device_info
+    attributes:
+      label: Device & Android TV / Google TV version
+      description: Brand, model, and Android version (no serial numbers or IPs).
+      placeholder: e.g. Generic Android TV Box, Android 12 (API 31)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: safety_checks
+    attributes:
+      label: Safe Mode & D-pad context
+      options:
+        - label: Safe Mode (3 crashes in 2 minutes) triggered
+        - label: Reproducible using physical TV remote D-pad
+        - label: I confirmed no personal IP, serial number, MAC, or account email is pasted below
+
+  - type: textarea
+    id: diagnose_output
+    attributes:
+      label: Sanitized `scripts/diagnose` output (optional)
+      description: Paste the Markdown block produced by `./scripts/diagnose.sh` or `.\scripts\diagnose.ps1`.
+      render: markdown
